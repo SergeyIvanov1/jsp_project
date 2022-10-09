@@ -29,7 +29,7 @@
 
 <br><br>
 
-<h2>The program had six modes of using:</h2>
+<h2>The program had six modes of using.<br>Description:</h2>
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
@@ -113,6 +113,27 @@
     </div>
 </div>
 
+<br><br>
+<form>
+    <input type="button" value="Encryption" onclick="window.location.href='/encrypt'">
+    <br><br>
+    <input type="button" value="Decryption with key" onclick="window.location.href='/decryption_with_key'">
+    <br><br>
+    <input type="button" value="Manual decryption Brute Force method's"
+           onclick="window.location.href='/manual_decryption_brute_force'">
+    <br><br>
+    <input type="button" value="Auto Decryption Brute Force method's"
+           onclick="window.location.href='/auto_decryption_brute_force'">
+    <br><br>
+    <input type="button" value="Manual decryption with statistic analise"
+           onclick="window.location.href='/manual_decryption_statistic_analise'">
+    <br><br>
+    <input type="button" value="Auto decryption with statistic analise"
+           onclick="window.location.href='/auto_decryption_statistic_analise'">
+    <br><br>
+</form>
+
+<br><br>
 
 </body>
 </html>

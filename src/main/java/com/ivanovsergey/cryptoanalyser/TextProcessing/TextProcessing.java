@@ -229,7 +229,7 @@ public class TextProcessing {
     public static final String ENGLISH_LANGUAGE = "Latin";
 
     public static final String ALPHABET_OF_SYMBOLS = "Symbols";
-    public static String language = RUSSIAN_LANGUAGE;
+    public static String language = ENGLISH_LANGUAGE;
 
     private TextProcessing() {
     }

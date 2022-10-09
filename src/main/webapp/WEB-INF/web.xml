@@ -4,23 +4,4 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
-
-    <servlet>
-        <servlet-name>StartPage</servlet-name>
-        <jsp-file>/startPage.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>StartPage</servlet-name>
-        <url-pattern>/start</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Cryptanalyzer</servlet-name>
-        <jsp-file>/startPage.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Cryptanalyzer</servlet-name>
-        <url-pattern>/crypto</url-pattern>
-    </servlet-mapping>
-
 </web-app>

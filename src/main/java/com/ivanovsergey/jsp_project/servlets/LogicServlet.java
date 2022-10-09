@@ -1,4 +1,4 @@
-package com.ivanovsergey.jsp_project;
+package com.ivanovsergey.jsp_project.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,11 @@ public class LogicServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/cryptanalyzer.jsp");
+        resp.sendRedirect("/views/cryptanalyzer.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("/views/unnamed.jsp");
     }
 }

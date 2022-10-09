@@ -38,23 +38,6 @@
     </div>
 </div>
 
-<%--<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">--%>
-<%--    <div class="carousel-inner">--%>
-<%--        <div class="carousel-item active">--%>
-<%--            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn--%>
-<%--            :ANd9GcThEQbZ7pE6QgXt6AN_qD9WnRKYbLZfoW0hIg&usqp=CAU" class="d-block w-100" alt="...">--%>
-<%--        </div>--%>
-<%--        <div class="carousel-item">--%>
-<%--            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn--%>
-<%--            :ANd9GcQP1H1rXd-sigw-xI5ErEYbywEbRLfV7irdzA&usqp=CAU" class="d-block w-100" alt="...">--%>
-<%--        </div>--%>
-<%--        <div class="carousel-item">--%>
-<%--            <img src="https://encrypted-tbn0.gstatic.com/images?q--%>
-<%--            =tbn:ANd9GcS-4wUSVDRGxlbnvpw-xPgF1Co3_ZQWHp6H1w&usqp=CAU" class="d-block w-100" alt="...">--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
 <form>
     <div class="shadow p-3 mb-5 bg-body rounded">
         <p><input type="button" value="Present yourself"
@@ -69,6 +52,18 @@
     </div>
 
 </form>
+
+<br><br>
+
+<form action="unnamed.jsp" method="post">
+    <label>Name:
+        <input type="text" name="name"><br />
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+<br><br>
 
 </body>
 </html>

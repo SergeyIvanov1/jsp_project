@@ -99,4 +99,56 @@ public class Coder {
             throw new ReadWrightFileException(message, e);
         }
     }
+
+    public static void encryption(InputStream fileInputStream, StringBuilder stringBuilder, int key) {
+
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+
+            int unencryptedChar;
+            while ((unencryptedChar = bufferedReader.read()) != -1) {
+
+                char wantedChar;
+                if (Character.isLetter(unencryptedChar)) {
+
+                    boolean flagUpperCase = Character.isUpperCase(unencryptedChar);
+                    if (flagUpperCase) {
+                        unencryptedChar = (char) Character.toLowerCase(unencryptedChar);
+                    }
+
+                    int index = TextProcessing.getIndex((char) unencryptedChar, TextProcessing.language);
+                    if (index >= 0) {
+
+                        char[] arrayAlphabet = TextProcessing.choiceOfAlphabet(TextProcessing.language);
+
+                        int secretCharInd = (index + key) % arrayAlphabet.length;
+                        if (secretCharInd < 0) {
+                            secretCharInd = arrayAlphabet.length - Math.abs(secretCharInd);
+                        }
+                        wantedChar = arrayAlphabet[secretCharInd];
+
+                        if (flagUpperCase) {
+                            stringBuilder.append(Character.toUpperCase(wantedChar));
+                        } else {
+                            stringBuilder.append(wantedChar);
+                        }
+                    }
+                } else {
+                    char[] array = TextProcessing.choiceOfAlphabet(TextProcessing.ALPHABET_OF_SYMBOLS);
+
+                    for (int j = 0; j < array.length; j++) {
+                        if (unencryptedChar == array[j]) {
+                            wantedChar = array[j];
+                            stringBuilder.append(wantedChar);
+                        }
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new PathProcessingException(FILE_NOT_FOUND, e);
+        } catch (SecurityException e) {
+            throw new PathProcessingException(INVALID_READ_ACCESS_TO_THE_FILE_S, e);
+        } catch (IOException e) {
+            throw new ReadWrightFileException("An Output error occurs with file", e);
+        }
+    }
 }
