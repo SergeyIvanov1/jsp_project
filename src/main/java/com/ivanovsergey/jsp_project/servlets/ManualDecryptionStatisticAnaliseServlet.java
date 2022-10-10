@@ -1,6 +1,7 @@
 package com.ivanovsergey.jsp_project.servlets;
 
 import com.ivanovsergey.cryptoanalyser.TextProcessing.Coder;
+import com.ivanovsergey.cryptoanalyser.TextProcessing.Decoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -25,17 +26,15 @@ public class ManualDecryptionStatisticAnaliseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Part filePart = req.getPart("file");
-        InputStream inputStream = filePart.getInputStream();
+        try (InputStream inputStream = filePart.getInputStream()) {
 
-        PrintWriter out = resp.getWriter();
-        StringBuilder stringBuilder = new StringBuilder();
+            PrintWriter out = resp.getWriter();
+            StringBuilder stringBuilder = new StringBuilder();
 
-        int key = Integer.parseInt(req.getParameter("key"));
+            Decoder.manualDecryptionWithStatistic(inputStream, stringBuilder);
 
-        Coder.encryption(inputStream, stringBuilder, key);
-
-        String string = stringBuilder.toString();
-        out.write(string + " hello");
-
+            String string = stringBuilder.toString();
+            out.write(string + " hello");
+        }
     }
 }

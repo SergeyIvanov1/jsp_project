@@ -26,18 +26,15 @@ public class ManualDecryptionBruteForceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Part filePart = req.getPart("file");
-        InputStream inputStream = filePart.getInputStream();
+        try (InputStream inputStream = filePart.getInputStream()){
 
-        PrintWriter out = resp.getWriter();
-        StringBuilder stringBuilder = new StringBuilder();
+            PrintWriter out = resp.getWriter();
+            StringBuilder stringBuilder = new StringBuilder();
 
-//        Decoder.manualDecryptionBruteForce(inputStream, stringBuilder);
+            Decoder.manualDecryptionBruteForce(inputStream, stringBuilder);
 
-//        String string = stringBuilder.toString();
-//        out.write(string + " hello");
-        if (inputStream != null) {
-            out.write(" hello");
+            String string = stringBuilder.toString();
+            out.write(string + " hello");
         }
-
     }
 }

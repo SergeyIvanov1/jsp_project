@@ -11,9 +11,7 @@
 
 <form action="/auto_decryption_brute_force" method="post" enctype="multipart/form-data">
     <p>Upload file
-        <input type="file" name="file" accept=".txt">
-    <p><label for="key">Input key</label>
-        <input type="text" name="key" id="key" required></p>
+        <input type="file" name="file" accept=".txt"></p>
     <br>
     <p><input type="submit" name="button" value="Auto decryption brute force"></p>
 </form>

@@ -102,7 +102,8 @@ public class Coder {
 
     public static void encryption(InputStream fileInputStream, StringBuilder stringBuilder, int key) {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
 
             int unencryptedChar;
             while ((unencryptedChar = bufferedReader.read()) != -1) {

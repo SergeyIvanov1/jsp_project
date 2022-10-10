@@ -25,17 +25,17 @@ public class AutoDecryptionStatisticAnaliseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Part filePart = req.getPart("file");
-        InputStream inputStream = filePart.getInputStream();
+        try (InputStream inputStream = filePart.getInputStream()) {
 
-        PrintWriter out = resp.getWriter();
-        StringBuilder stringBuilder = new StringBuilder();
+            PrintWriter out = resp.getWriter();
+            StringBuilder stringBuilder = new StringBuilder();
 
-        int key = Integer.parseInt(req.getParameter("key"));
+            int key = Integer.parseInt(req.getParameter("key"));
 
-        Coder.encryption(inputStream, stringBuilder, key);
+            Coder.encryption(inputStream, stringBuilder, key);
 
-        String string = stringBuilder.toString();
-        out.write(string + " hello");
-
+            String string = stringBuilder.toString();
+            out.write(string + " hello");
+        }
     }
 }

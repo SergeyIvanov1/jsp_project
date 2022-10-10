@@ -81,21 +81,36 @@ public class Decoder {
     public static void manualDecryptionBruteForce(InputStream fileInputStream, StringBuilder stringBuilder) {
 
         for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
-
-            stringBuilder.append("\n\n\tkey = " + key);
+            stringBuilder.append("\tKey = " + key + "\n");
             Coder.encryption(fileInputStream, stringBuilder, key);
+            stringBuilder.append("\n\n");
         }
     }
 
-    public static void autoDecryptionBruteForce(InputStream fileInputStream, StringBuilder stringBuilder) {
+//    public static void autoDecryptionBruteForce(InputStream fileInputStream, StringBuilder stringBuilder) {
+//
+//        for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
+//
+//            Coder.encryption(fileInputStream, stringBuilder, key);
+//
+//            if (Checks.autoSelectOfCorrectDecryption(pathTo)) {
+//                break;
+//            }
+//        }
+//    }
 
-        for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
+    public static void manualDecryptionWithStatistic(InputStream fileInputStream, StringBuilder stringBuilder) {
 
-            Coder.encryption(fileInputStream, stringBuilder, key);
+        char[] chars = TextProcessing.getArrayGreatestFrequentLettersOfAlphabets(TextProcessing.language);
+        int indexOfMostFrequentLetterOfText = TextProcessing.getIndex(TextProcessing.getMostFrequentLetterOfText(fileInputStream),
+                TextProcessing.language);
 
-            if (Checks.autoSelectOfCorrectDecryption(pathTo)) {
-                break;
-            }
+        for (int ind = 0; ind < chars.length; ind++) {
+
+            int foundKey = indexOfMostFrequentLetterOfText
+                    - TextProcessing.getIndex(chars[ind], TextProcessing.language);
+
+            decryptionWithKey(fileInputStream, stringBuilder, foundKey);
         }
     }
 }
