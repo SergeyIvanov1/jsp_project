@@ -1,6 +1,7 @@
 package com.ivanovsergey.jsp_project.servlets;
 
 import com.ivanovsergey.cryptoanalyser.TextProcessing.Coder;
+import com.ivanovsergey.cryptoanalyser.TextProcessing.Decoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -32,10 +33,9 @@ public class DecryptionServlet extends HttpServlet {
 
         int key = Integer.parseInt(req.getParameter("key"));
 
-        Coder.encryption(inputStream, stringBuilder, key);
+        Decoder.decryptionWithKey(inputStream, stringBuilder, key);
 
         String string = stringBuilder.toString();
         out.write(string + " hello");
-
     }
 }

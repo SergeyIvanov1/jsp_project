@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import com.oreilly.servlet.MultipartRequest;
+//import com.oreilly.servlet.MultipartRequest;
 //https://progler.ru/blog/servlet-zagruzka-fayla
 
 @WebServlet("/encrypt")
@@ -35,9 +35,9 @@ public class EncryptServlet extends HttpServlet {
         Coder.encryption(inputStream, stringBuilder, key);
 
 
-        MultipartRequest m = new MultipartRequest(request, "C:\temp");
+//        MultipartRequest m = new MultipartRequest(request, "C:\temp");
 
-        out.print("File uploaded successfully");
+//        out.print("File uploaded successfully");
 
         String string = stringBuilder.toString();
         out.write(string + " hello");

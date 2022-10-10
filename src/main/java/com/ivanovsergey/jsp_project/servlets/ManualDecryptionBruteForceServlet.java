@@ -1,6 +1,7 @@
 package com.ivanovsergey.jsp_project.servlets;
 
 import com.ivanovsergey.cryptoanalyser.TextProcessing.Coder;
+import com.ivanovsergey.cryptoanalyser.TextProcessing.Decoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,12 +31,13 @@ public class ManualDecryptionBruteForceServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         StringBuilder stringBuilder = new StringBuilder();
 
-        int key = Integer.parseInt(req.getParameter("key"));
+//        Decoder.manualDecryptionBruteForce(inputStream, stringBuilder);
 
-        Coder.encryption(inputStream, stringBuilder, key);
-
-        String string = stringBuilder.toString();
-        out.write(string + " hello");
+//        String string = stringBuilder.toString();
+//        out.write(string + " hello");
+        if (inputStream != null) {
+            out.write(" hello");
+        }
 
     }
 }

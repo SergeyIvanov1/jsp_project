@@ -1,0 +1,48 @@
+div#tablecont {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+div#tablecont > div {
+    display: table-row
+}
+
+div#tablecont > div > * {
+    display: table-cell;
+    vertical-align: top;
+}
+
+nav {
+    background-color: burlywood;
+    width: 150px;
+    padding: 10px;
+}
+
+
+body {
+    background-image: url(https://avatars.mds.yandex.net/i?id=8a0f18d7dd3705fd599b6170e265e936-5858922-images-thumbs&n=13);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h2 {
+    text-align: center;
+}
+
+h5 {
+    text-align: center;
+}
+
+
+header {
+    background: cadetblue;
+}
+
+main {
+    text-align: justify;
+}
+
+footer {
+    background: cornflowerblue;
+}
