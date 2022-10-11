@@ -30,18 +30,18 @@ public class Checks {
         }
 
         if (!Files.isReadable(filePath)) {
-            String message = "File: "+ filePath + " is not readable";
+            String message = "File: " + filePath + " is not readable";
             throw new PathProcessingException(message);
         }
 
         if (Files.isDirectory(filePath)) {
 
-            String message = "Path: "+ filePath + " is directory";
+            String message = "Path: " + filePath + " is directory";
             throw new PathProcessingException(message);
         }
 
         if (!path.endsWith(".txt")) {
-            String message = "Path: "+ filePath + " is not ended .txt";
+            String message = "Path: " + filePath + " is not ended .txt";
             throw new PathProcessingException(message);
         }
     }
@@ -164,60 +164,41 @@ public class Checks {
         return false;
     }
 
-//    public static boolean autoSelectOfCorrectDecryption(String pathTo) {
-//
-//        try (FileInputStream fileInputStream = new FileInputStream(pathTo);
-//             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream))) {
-//
-//            StringBuilder stringBuilder = new StringBuilder();
-//            String secondWordFromFile = null;
-//            int count = 0;
-//            int symbol;
-//
-//            while ((symbol = bufferedReader.read()) != -1) {
-//                String wordFromFile;
-//
-//                if (Character.isLetter(symbol) || Character.isWhitespace(symbol)) {
-//
-//                    if (Character.isWhitespace(symbol) || TextProcessing.isSymbol((char) symbol)) {
-//
-//                        wordFromFile = stringBuilder.toString();
-//                        stringBuilder.delete(0, wordFromFile.length());
-//
-//                        if (Checks.isCorrespondFrequentWords(wordFromFile) &&
-//                                !(wordFromFile.equalsIgnoreCase(secondWordFromFile))) {
-//
-//                            count++;
-//
-//                            // if "count" > 1, means two different words from Alphabets.STRINGS
-//                            // match with content "pathFrom"
-//                            if (count > 1) {
-//
-//                                return true;
-//                            }
-//                            secondWordFromFile = wordFromFile;
-//                        }
-//                    } else {
-//                        stringBuilder.append((char) symbol);
-//                    }
-//                }
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//
-//            String message = "File: \"" + pathTo + "\" not found";
-//            throw new PathProcessingException(message, e);
-//
-//        } catch (SecurityException e) {
-//
-//            String message = "Invalid read access to the file: \"" + pathTo + "\"";
-//            throw new PathProcessingException(message, e);
-//
-//        } catch (IOException e) {
-//
-//            String message = "An Output error occurs with file \"" + pathTo + "\"";
-//            throw new ReadWrightFileException(message, e);
-//        }
-//        return false;
-//    }
+    public static boolean autoSelectOfCorrectDecryption(StringBuilder stringBuilder2) {
+        byte[] bytes = stringBuilder2.toString().getBytes();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String secondWordFromFile = null;
+        int count = 0;
+        int symbol;
+        for (int i = 0; i < bytes.length; i++) {
+            symbol = bytes[i];
+            String wordFromFile;
+
+            if (Character.isLetter(symbol) || Character.isWhitespace(symbol)) {
+
+                if (Character.isWhitespace(symbol) || TextProcessing.isSymbol((char) symbol)) {
+
+                    wordFromFile = stringBuilder.toString();
+                    stringBuilder.delete(0, wordFromFile.length());
+
+                    if (Checks.isCorrespondFrequentWords(wordFromFile) &&
+                            !(wordFromFile.equalsIgnoreCase(secondWordFromFile))) {
+
+                        count++;
+
+                        // if "count" > 1, means two different words from Alphabets.STRINGS
+                        // match with content "pathFrom"
+                        if (count > 1) {
+                            return true;
+                        }
+                        secondWordFromFile = wordFromFile;
+                    }
+                } else {
+                    stringBuilder.append((char) symbol);
+                }
+            }
+        }
+        return false;
+    }
 }

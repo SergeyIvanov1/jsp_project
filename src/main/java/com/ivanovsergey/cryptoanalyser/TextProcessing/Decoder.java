@@ -86,35 +86,71 @@ public class Decoder {
 
         for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
             stringBuilder.append("\tKey = " + key + "\n");
-            Coder.encryption(req, stringBuilder, key);
-            stringBuilder.append("\n\n");
+            Decoder.decryptionWithKey(req, stringBuilder, key);
+//            Coder.encryption(req, stringBuilder, key);
+            stringBuilder.append("\n\n\n");
         }
     }
 
-//    public static void autoDecryptionBruteForce(InputStream fileInputStream, StringBuilder stringBuilder) {
-//
-//        for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
-//
-//            Coder.encryption(fileInputStream, stringBuilder, key);
-//
-//            if (Checks.autoSelectOfCorrectDecryption(pathTo)) {
-//                break;
-//            }
-//        }
-//    }
+    public static void autoDecryptionBruteForce(HttpServletRequest req, StringBuilder stringBuilder)
+            throws ServletException, IOException {
 
-    public static void manualDecryptionWithStatistic(HttpServletRequest req, StringBuilder stringBuilder) throws IOException, ServletException {
+        for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
+            Coder.encryption(req, stringBuilder, key);
 
-        char[] chars = TextProcessing.getArrayGreatestFrequentLettersOfAlphabets(TextProcessing.language);
+            if (Checks.autoSelectOfCorrectDecryption(stringBuilder)) {
+                break;
+            }
+            stringBuilder.setLength(0);
+        }
+
+        if (stringBuilder.length() == 0){
+            stringBuilder.append("Decryption is not successfully");
+        }
+    }
+
+    public static void manualDecryptionWithStatistic(HttpServletRequest req, StringBuilder stringBuilder)
+            throws IOException, ServletException {
+
+        char[] frequentLetters = TextProcessing.getArrayGreatestFrequentLettersOfAlphabets(TextProcessing.language);
+
         int indexOfMostFrequentLetterOfText = TextProcessing.getIndex(TextProcessing.getMostFrequentLetterOfText(req),
                 TextProcessing.language);
 
-        for (int ind = 0; ind < chars.length; ind++) {
+        for (char frequentLetter : frequentLetters) {
 
             int foundKey = indexOfMostFrequentLetterOfText
-                    - TextProcessing.getIndex(chars[ind], TextProcessing.language);
+                    - TextProcessing.getIndex(frequentLetter, TextProcessing.language);
 
             decryptionWithKey(req, stringBuilder, foundKey);
+
+            if (Checks.autoSelectOfCorrectDecryption(stringBuilder)) {
+                break;
+            }
+            stringBuilder.setLength(0);
+        }
+
+        if (stringBuilder.length() == 0){
+            stringBuilder.append("Decryption is not successfully");
+        }
+    }
+
+    public static void autoDecryptionWithStatistic(HttpServletRequest req, StringBuilder stringBuilder) throws ServletException, IOException {
+
+        char[] chars = TextProcessing.getArrayGreatestFrequentLettersOfAlphabets(TextProcessing.language);
+        int indexOfMostFrequentLetterOfText = TextProcessing.getIndex(
+                TextProcessing.getMostFrequentLetterOfText(req), TextProcessing.language);
+
+        for (int ind = 0; ind < chars.length; ind++) {
+
+            int indexOfMostFrequentLetterOfAlphabet = TextProcessing.getIndex(chars[ind], TextProcessing.language);
+            int foundKey = indexOfMostFrequentLetterOfText - indexOfMostFrequentLetterOfAlphabet;
+
+            decryptionWithKey(req, stringBuilder, foundKey);
+
+            if (Checks.autoSelectOfCorrectDecryption(stringBuilder)) {
+                break;
+            }
         }
     }
 }

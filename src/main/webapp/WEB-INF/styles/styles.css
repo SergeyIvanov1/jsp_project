@@ -14,14 +14,14 @@ div#tablecont > div > * {
 }
 
 nav {
-    background-color: burlywood;
+    background-color: lemonchiffon;
     width: 150px;
     padding: 10px;
 }
 
-
 body {
     background-image: url(https://avatars.mds.yandex.net/i?id=8a0f18d7dd3705fd599b6170e265e936-5858922-images-thumbs&n=13);
+    /*background-color: cornsilk;*/
     background-size: cover;
     background-attachment: fixed;
 }
@@ -34,9 +34,9 @@ h5 {
     text-align: center;
 }
 
-
 header {
-    background: cadetblue;
+    background-color: darkseagreen;
+    /*background: cadetblue;*/
 }
 
 main {
@@ -44,5 +44,16 @@ main {
 }
 
 footer {
-    background: cornflowerblue;
+    background-color: gainsboro;
+    /*background: cornflowerblue;*/
+    text-align: right;
+}
+
+div.button_crypto {
+    background-color: bisque;
+
+}
+
+div.main_margin {
+    margin-left: 30px;
 }

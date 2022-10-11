@@ -3,6 +3,7 @@ package com.ivanovsergey.jsp_project.servlets;
 import com.ivanovsergey.cryptoanalyser.TextProcessing.Coder;
 import com.ivanovsergey.cryptoanalyser.TextProcessing.Decoder;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -17,13 +18,14 @@ import java.io.*;
 public class DecryptionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/decryption_with_key.jsp");
+        req.setAttribute("getForm", "form");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/views/cryptanalyzer.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        PrintWriter out = resp.getWriter();
         StringBuilder stringBuilder = new StringBuilder();
 
         int key = Integer.parseInt(req.getParameter("key"));
@@ -31,6 +33,8 @@ public class DecryptionServlet extends HttpServlet {
         Decoder.decryptionWithKey(req, stringBuilder, key);
 
         String string = stringBuilder.toString();
-        out.write(string + " hello");
+        req.setAttribute("encrypt", string);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/views/cryptanalyzer.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }
