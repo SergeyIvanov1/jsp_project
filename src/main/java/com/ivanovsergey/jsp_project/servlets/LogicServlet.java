@@ -12,7 +12,9 @@ public class LogicServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/cryptanalyzer.jsp");
+        String[] users = new String[] {"Tom", "Bob", "Sam"};
+        req.setAttribute("users", users);
+        getServletContext().getRequestDispatcher("/views/logic.jsp").forward(req, resp);
     }
 
     @Override

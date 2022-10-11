@@ -20,7 +20,7 @@ import java.io.*;
 public class ManualDecryptionBruteForceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("getForm", "form");
+        req.setAttribute("getForm", "manual_decryption_brute_force");
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/views/cryptanalyzer.jsp");
         requestDispatcher.forward(req, resp);
     }

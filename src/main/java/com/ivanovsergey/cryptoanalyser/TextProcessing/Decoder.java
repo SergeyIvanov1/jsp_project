@@ -85,10 +85,9 @@ public class Decoder {
     public static void manualDecryptionBruteForce(HttpServletRequest req, StringBuilder stringBuilder) throws IOException, ServletException {
 
         for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
-            stringBuilder.append("\tKey = " + key + "\n");
+            stringBuilder.append("<p>Key = " + key + "</p><br>");
             Decoder.decryptionWithKey(req, stringBuilder, key);
-//            Coder.encryption(req, stringBuilder, key);
-            stringBuilder.append("\n\n\n");
+            stringBuilder.append("<br><br>");
         }
     }
 

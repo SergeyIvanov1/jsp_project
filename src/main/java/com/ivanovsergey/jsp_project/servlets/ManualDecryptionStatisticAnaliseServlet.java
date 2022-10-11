@@ -17,7 +17,7 @@ import java.io.*;
 public class ManualDecryptionStatisticAnaliseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("getForm", "form");
+        req.setAttribute("getForm", "manual_decryption_statistic_analise");
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/views/cryptanalyzer.jsp");
         requestDispatcher.forward(req, resp);
     }

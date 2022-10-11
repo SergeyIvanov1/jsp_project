@@ -2,7 +2,6 @@
 <style>
     <%@include file="/WEB-INF/styles/styles.css" %>
 </style>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -66,24 +65,67 @@
                     if (string != null) {
                         out.println("<br><p><strong>Result:</strong></p> " + string);
                     } else if (form != null) {
+                        switch (form) {
+                            case "encrypt_form":
                 %>
-                <c:set var="form" scope="request" value="${getForm}"/>
-                <c:choose >
-                    <c:when test="${getForm == encrypt_form}">
-                        <form action="/encrypt" method="post" enctype="multipart/form-data">
-                            <p>Upload file
-                                <input type="file" name="file" accept=".txt"></p>
-                            <p><label for="key">Input key</label>
-                                <input type="text" name="key" id="key" required></p>
-                            <br>
-                            <p><input type="submit" name="button" value="Encrypt"></p>
-                        </form>
-                    </c:when>
-
-                </c:choose>
+                <form action="/encrypt" method="post" enctype="multipart/form-data">
+                    <p>Upload file
+                        <input type="file" name="file" accept=".txt"></p>
+                    <p><label for="key">Input key</label>
+                        <input type="text" name="key" id="key" required></p>
+                    <p><input type="submit" name="button" value="Encrypt"></p>
+                </form>
+                <%
+                        break;
+                    case "decryption_with_key":
+                %>
+                <form action="/decryption_with_key" method="post" enctype="multipart/form-data">
+                    <p>Upload file
+                        <input type="file" name="file" accept=".txt"></p>
+                    <p><label for="key">Input key</label>
+                        <input type="text" name="key" id="key2" required></p>
+                    <p><input type="submit" name="button" value="Encrypt"></p>
+                </form>
+                <%
+                        break;
+                    case "manual_decryption_brute_force":
+                %>
+                <form action="/manual_decryption_brute_force" method="post" enctype="multipart/form-data">
+                    <p>Upload file
+                        <input type="file" name="file" accept=".txt"></p>
+                    <p><input type="submit" name="button" value="Encrypt"></p>
+                </form>
+                <%
+                        break;
+                    case "manual_decryption_statistic_analise":
+                %>
+                <form action="/manual_decryption_statistic_analise" method="post" enctype="multipart/form-data">
+                    <p>Upload file
+                        <input type="file" name="file" accept=".txt"></p>
+                    <p><input type="submit" name="button" value="Encrypt"></p>
+                </form>
+                <%
+                        break;
+                    case "auto_decryption_brute_force":
+                %>
+                <form action="/auto_decryption_brute_force" method="post" enctype="multipart/form-data">
+                    <p>Upload file
+                        <input type="file" name="file" accept=".txt"></p>
+                    <p><input type="submit" name="button" value="Encrypt"></p>
+                </form>
+                <%
+                        break;
+                    case "auto_decryption_statistic_analise":
+                %>
+                <form action="/auto_decryption_statistic_analise" method="post" enctype="multipart/form-data">
+                    <p>Upload file
+                        <input type="file" name="file" accept=".txt"></p>
+                    <p><input type="submit" name="button" value="Encrypt"></p>
+                </form>
 
 
                 <%
+                    }
                 } else {
                 %>
 
