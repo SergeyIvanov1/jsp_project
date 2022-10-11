@@ -4,6 +4,9 @@ package com.ivanovsergey.cryptoanalyser.TextProcessing;
 import com.ivanovsergey.cryptoanalyser.Exceptions.PathProcessingException;
 import com.ivanovsergey.cryptoanalyser.Exceptions.ReadWrightFileException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.*;
 
 public class Coder {
@@ -100,10 +103,11 @@ public class Coder {
         }
     }
 
-    public static void encryption(InputStream fileInputStream, StringBuilder stringBuilder, int key) {
+    public static void encryption(HttpServletRequest req, StringBuilder stringBuilder, int key) throws ServletException, IOException {
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+        Part filePart = req.getPart("file");
+        try (InputStream inputStream = filePart.getInputStream();
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
 
             int unencryptedChar;
             while ((unencryptedChar = bufferedReader.read()) != -1) {
@@ -125,6 +129,7 @@ public class Coder {
                         if (secretCharInd < 0) {
                             secretCharInd = arrayAlphabet.length - Math.abs(secretCharInd);
                         }
+
                         wantedChar = arrayAlphabet[secretCharInd];
 
                         if (flagUpperCase) {
@@ -133,11 +138,14 @@ public class Coder {
                             stringBuilder.append(wantedChar);
                         }
                     }
+
                 } else {
+
                     char[] array = TextProcessing.choiceOfAlphabet(TextProcessing.ALPHABET_OF_SYMBOLS);
 
                     for (int j = 0; j < array.length; j++) {
                         if (unencryptedChar == array[j]) {
+
                             wantedChar = array[j];
                             stringBuilder.append(wantedChar);
                         }
@@ -146,8 +154,10 @@ public class Coder {
             }
         } catch (FileNotFoundException e) {
             throw new PathProcessingException(FILE_NOT_FOUND, e);
+
         } catch (SecurityException e) {
             throw new PathProcessingException(INVALID_READ_ACCESS_TO_THE_FILE_S, e);
+
         } catch (IOException e) {
             throw new ReadWrightFileException("An Output error occurs with file", e);
         }

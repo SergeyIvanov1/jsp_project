@@ -4,6 +4,9 @@ package com.ivanovsergey.cryptoanalyser.TextProcessing;
 import com.ivanovsergey.cryptoanalyser.Exceptions.PathProcessingException;
 import com.ivanovsergey.cryptoanalyser.Exceptions.ReadWrightFileException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -254,7 +257,7 @@ public class TextProcessing {
 
     public static boolean isSymbol(char symbol) {
         int index = Arrays.binarySearch(SYMBOLS, symbol);
-            return index >= 0;
+        return index >= 0;
     }
 
     public static char[] choiceOfAlphabet(String language) {
@@ -343,10 +346,14 @@ public class TextProcessing {
         }
     }
 
-    public static char getMostFrequentLetterOfText(InputStream fileInputStream) {
+    public static char getMostFrequentLetterOfText(HttpServletRequest req) throws ServletException, IOException {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream))) {
+        Part filePart = req.getPart("file");
+        try (InputStream inputStream = filePart.getInputStream();
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+
             HashMap<Character, Integer> mapa = new HashMap<>();
+
             int value;
             while ((value = bufferedReader.read()) != -1) {
 
@@ -372,15 +379,21 @@ public class TextProcessing {
                 int amount = pair.getValue();
 
                 if (amount > max) {
+
                     maxRepetitions = character;
                     max = amount;
                 }
             }
             return maxRepetitions;
 
+        } catch (FileNotFoundException e) {
+            throw new PathProcessingException("File: not found\n" + e.getMessage(), e);
+
+        } catch (SecurityException e) {
+            throw new PathProcessingException("Invalid read access to the file: Error details: " + e.getMessage(), e);
+
         } catch (IOException e) {
-            String message = "An Output error occurs with file ";
-            throw new ReadWrightFileException(message, e);
+            throw new ReadWrightFileException("An Output error occurs with file", e);
         }
     }
 }

@@ -1,5 +1,9 @@
 package com.ivanovsergey.cryptoanalyser.TextProcessing;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class Decoder {
@@ -73,16 +77,16 @@ public class Decoder {
         return pathTo + System.getProperty("file.separator") + "Decode_key_" + key + ".txt";
     }
 
-    public static void decryptionWithKey(InputStream fileInputStream, StringBuilder stringBuilder, int key) {
+    public static void decryptionWithKey(HttpServletRequest req, StringBuilder stringBuilder, int key) throws IOException, ServletException {
 
-        Coder.encryption(fileInputStream, stringBuilder, -key);
+        Coder.encryption(req, stringBuilder, -key);
     }
 
-    public static void manualDecryptionBruteForce(InputStream fileInputStream, StringBuilder stringBuilder) {
+    public static void manualDecryptionBruteForce(HttpServletRequest req, StringBuilder stringBuilder) throws IOException, ServletException {
 
         for (int key = 1; key < TextProcessing.choiceOfAlphabet(TextProcessing.language).length; key++) {
             stringBuilder.append("\tKey = " + key + "\n");
-            Coder.encryption(fileInputStream, stringBuilder, key);
+            Coder.encryption(req, stringBuilder, key);
             stringBuilder.append("\n\n");
         }
     }
@@ -99,10 +103,10 @@ public class Decoder {
 //        }
 //    }
 
-    public static void manualDecryptionWithStatistic(InputStream fileInputStream, StringBuilder stringBuilder) {
+    public static void manualDecryptionWithStatistic(HttpServletRequest req, StringBuilder stringBuilder) throws IOException, ServletException {
 
         char[] chars = TextProcessing.getArrayGreatestFrequentLettersOfAlphabets(TextProcessing.language);
-        int indexOfMostFrequentLetterOfText = TextProcessing.getIndex(TextProcessing.getMostFrequentLetterOfText(fileInputStream),
+        int indexOfMostFrequentLetterOfText = TextProcessing.getIndex(TextProcessing.getMostFrequentLetterOfText(req),
                 TextProcessing.language);
 
         for (int ind = 0; ind < chars.length; ind++) {
@@ -110,7 +114,7 @@ public class Decoder {
             int foundKey = indexOfMostFrequentLetterOfText
                     - TextProcessing.getIndex(chars[ind], TextProcessing.language);
 
-            decryptionWithKey(fileInputStream, stringBuilder, foundKey);
+            decryptionWithKey(req, stringBuilder, foundKey);
         }
     }
 }

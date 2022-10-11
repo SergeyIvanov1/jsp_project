@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.*;
 
 @WebServlet("/manual_decryption_statistic_analise")
 @MultipartConfig
@@ -25,16 +23,12 @@ public class ManualDecryptionStatisticAnaliseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Part filePart = req.getPart("file");
-        try (InputStream inputStream = filePart.getInputStream()) {
+        PrintWriter out = resp.getWriter();
+        StringBuilder stringBuilder = new StringBuilder();
 
-            PrintWriter out = resp.getWriter();
-            StringBuilder stringBuilder = new StringBuilder();
+        Decoder.manualDecryptionWithStatistic(req, stringBuilder);
 
-            Decoder.manualDecryptionWithStatistic(inputStream, stringBuilder);
-
-            String string = stringBuilder.toString();
-            out.write(string + " hello");
-        }
+        String string = stringBuilder.toString();
+        out.write(string + " hello");
     }
 }
