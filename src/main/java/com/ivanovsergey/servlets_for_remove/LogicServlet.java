@@ -1,4 +1,4 @@
-package com.ivanovsergey.jsp_project.servlets;
+package com.ivanovsergey.servlets_for_remove;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

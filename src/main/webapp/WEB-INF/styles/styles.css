@@ -14,14 +14,15 @@ div#tablecont > div > * {
 }
 
 nav {
-    background-color: lemonchiffon;
+    /*background-color: lemonchiffon;*/
+    background-color: #474A51;
     width: 150px;
     padding: 10px;
+    /*color: darkgrey;*/
 }
 
 body {
-    background-image: url(https://avatars.mds.yandex.net/i?id=8a0f18d7dd3705fd599b6170e265e936-5858922-images-thumbs&n=13);
-    /*background-color: cornsilk;*/
+    background-color: lightslategrey;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -35,8 +36,7 @@ h5 {
 }
 
 header {
-    background-color: darkseagreen;
-    /*background: cadetblue;*/
+    background-color: #474A51;
 }
 
 main {
@@ -44,14 +44,17 @@ main {
 }
 
 footer {
-    background-color: gainsboro;
-    /*background: cornflowerblue;*/
+    background-color: #474A51;
     text-align: right;
 }
 
-div.button_crypto {
-    background-color: bisque;
+nav, header, footer {
+    border: 2px solid darkslateblue;
+}
 
+div.button_crypto {
+    /*background-color: bisque;*/
+    color: darkgrey;
 }
 
 div.main_margin {

@@ -11,7 +11,7 @@ import java.io.*;
 //import com.oreilly.servlet.MultipartRequest;
 //https://progler.ru/blog/servlet-zagruzka-fayla
 
-@WebServlet("/encrypt")
+//@WebServlet("/encrypt")
 @MultipartConfig
 public class EncryptServlet extends HttpServlet {
     @Override

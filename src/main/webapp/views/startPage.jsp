@@ -15,7 +15,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
 <header>
-    <h2>Hi. This is "Hello page" for study project by learning servlets, jsp and jstl.</h2>
+    <h2>Hi. This is "Hello page" for project by practice technologies.</h2>
     <h5>Here you can see implementation of following between pages.</h5>
     <br>
 </header>
@@ -27,10 +27,10 @@
             <br>
             <div><a href="cryptanalyzer.jsp">Cryptanalyzer</a></div>
             <br>
-            <div><a href="#">Forum</a></div>
-            <br>
-            <div><a href="#">Solution for module 4 task</a></div>
-            <br>
+<%--            <div><a href="#">Forum</a></div>--%>
+<%--            <br>--%>
+<%--            <div><a href="#">Solution for module 4 task</a></div>--%>
+<%--            <br>--%>
         </nav>
 
         <main>
@@ -40,6 +40,9 @@
                     <p>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZg-gsHwMqLsNMbDUB5lkrD_y423zBRyfuKkcqILaRHXW_-BtZwLxvsNkFg-dVNbvHkYY&usqp=CAU"
                              class="img-fluid" alt="cryptography">
+                    </p>
+                    <p>
+                        <img src="resources/image.jpg" class="img-fluid" alt="cryptography">
                     </p>
                 </div>
 
@@ -52,9 +55,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
+                            the card's content.</p>
                         <a href="cryptanalyzer.jsp" class="btn btn-primary">Use criptanalyzer</a>
                     </div>
                 </div>
@@ -74,7 +75,7 @@
 
                 <br><br>
 
-                <form action="unnamed.jsp" method="post">
+                <form action="jsp_for_remove/unnamed.jsp" method="post">
                     <label>Name:
                         <input type="text" name="name"><br/>
                     </label>
@@ -83,6 +84,31 @@
                 </form>
 
                 <br><br>
+                <p>Determinations:</p>
+                <dl>
+                    <dt>Encryption</dt>
+                    <dd>Text from first indicated file is encoding to second file.</dd>
+                    <dt></dt>
+                    <dd>Decryption with key</dd>
+                    <dt>The program will request the key for decryption.</dt>
+                    <dd>Manual decryption "Brute Force" method's</dd>
+                    <dt>Decryption will make to indicated directory.
+                        Amount of files depends from amount of language's letters (possible keys).
+                    </dt>
+                    <dd>Auto Decryption "Brute Force" method's</dd>
+                    <dt>Program will use all possible keys in order.
+                        Each of decrypted text will automatically verify to correct decryption,
+                        using most frequently words of language. Decryption will make to indicate file.
+                    </dt>
+                    <dd>Manual decryption with statistic</dd>
+                    <dt>The program gets most frequent letter of encrypted text and took--%>
+                        it for six the greatest frequent letters of alphabets in order.
+                        The key is difference between letter's indexes. Decryption will make to
+                        indicate directory into different files.
+                    </dt>
+                </dl>
+
+
             </div>
         </main>
     </div>

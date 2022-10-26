@@ -75,7 +75,6 @@
                             case "encrypt_form":
                 %>
                     <%--                можно попробовать {/encrypt} - ({form}) вместо /encrypt и тогда количество форм можно будет сократить--%>
-                <br><br>
                 <form action="/encrypt" method="post" enctype="multipart/form-data">
                     <p>Upload file
                         <input type="file" name="file" accept=".txt"></p>
@@ -87,7 +86,6 @@
                         break;
                     case "decryption_with_key":
                 %>
-                <br><br>
                 <form action="/decryption_with_key" method="post" enctype="multipart/form-data">
                     <p>Upload file
                         <input type="file" name="file" accept=".txt"></p>
@@ -100,7 +98,6 @@
                         break;
                     case "manual_decryption_brute_force":
                 %>
-                <br><br>
                 <form action="/manual_decryption_brute_force" method="post" enctype="multipart/form-data">
                     <p>Upload file
                         <input type="file" name="file" accept=".txt"></p>
@@ -110,7 +107,6 @@
                         break;
                     case "manual_decryption_statistic_analise":
                 %>
-                <br><br>
                 <form action="/manual_decryption_statistic_analise" method="post" enctype="multipart/form-data">
                     <p>Upload file
                         <input type="file" name="file" accept=".txt"></p>
@@ -121,7 +117,6 @@
                         break;
                     case "auto_decryption_brute_force":
                 %>
-                <br><br>
                 <form action="/auto_decryption_brute_force" method="post" enctype="multipart/form-data">
                     <p>Upload file
                         <input type="file" name="file" accept=".txt"></p>
@@ -131,7 +126,6 @@
                         break;
                     case "auto_decryption_statistic_analise":
                 %>
-                <br><br>
                 <form action="/auto_decryption_statistic_analise" method="post" enctype="multipart/form-data">
                     <p>Upload file
                         <input type="file" name="file" accept=".txt"></p>

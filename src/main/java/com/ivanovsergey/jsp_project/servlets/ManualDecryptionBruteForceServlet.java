@@ -1,8 +1,5 @@
 package com.ivanovsergey.jsp_project.servlets;
 
-import com.ivanovsergey.cryptoanalyser.Exceptions.PathProcessingException;
-import com.ivanovsergey.cryptoanalyser.Exceptions.ReadWrightFileException;
-import com.ivanovsergey.cryptoanalyser.TextProcessing.Coder;
 import com.ivanovsergey.cryptoanalyser.TextProcessing.Decoder;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.*;
 
 @WebServlet("/manual_decryption_brute_force")
